@@ -14,16 +14,20 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
         }
         button {
             background-color: #ff5a5f;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             border-radius: 5px;
             margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
         }
         button:disabled {
             background-color: gray;
@@ -34,7 +38,9 @@
         }
         select {
             margin-top: 10px;
-            padding: 5px;
+            padding: 8px;
+            width: 100%;
+            max-width: 300px;
         }
         .modal {
             display: none;
@@ -47,6 +53,8 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             text-align: center;
+            width: 90%;
+            max-width: 400px;
         }
         .overlay {
             display: none;
@@ -69,29 +77,41 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+            .modal {
+                width: 95%;
+            }
+        }
     </style>
 </head>
 <body>
-    <img src="./img/8c0b8d83-b293-421d-8f64-1d59e37a629a.webp" alt="Brendinha2" width="150px" height="150px">
+    <img src="./img/0531916f-d6b8-413d-8bb2-de7f91299ec3.webp" alt="brendinha" style="width: 150px; height: 150px;">
     <div id="countdown">Tempo restante: 00:00:30</div>
     <button id="openModal" disabled>Clique aqui para sair de férias</button>
     <select id="terms">
         <option value="">Aceite os termos e condições</option>
         <option value="accept">Aceito</option>
     </select>
-    
-    <img src="./img/0531916f-d6b8-413d-8bb2-de7f91299ec3.webp" alt="Brendinha1" width="150px" height="150px">
 
+    <img src="./img/8c0b8d83-b293-421d-8f64-1d59e37a629a.webp" alt="brendinha" style="width: 150px; height: 150px;">
+    
     <div class="overlay" id="overlay"></div>
     <div class="modal" id="modal">
-        <p>Parabéns, mozin! 🎉 Você finalmente entrou de férias! Mas quem realmente ganhou fui eu... 😏 Antes de clicar no botão, você aceitou os termos e condições, e olha só a cláusula especial escondida no rodapé: 'Nessas férias, o acesso para VIP foi liberado! (se é que me entende)' 😈🔥
+        <p>Parabéns, mozin! 🎉 Você finalmente entrou de férias! Mas quem vai ganhar mesmo, sou eu... 😏 Antes de clicar no botão, você aceitou os termos e condições, e tinha uma cláusula especial escondida no rodapé: 'Nessas férias, o acesso para o VIP foi liberado! (se é que me entende) 😈🔥
 
-            Agora não tem volta mais, está assinado o contrato📜😂! Bora aproveitar essas férias do jeitinho que a gente merece!</p>
+            Agora não tem volta, contrato assinado! Bora aproveitar essas férias do jeitinho que a gente merece!</p>
             
             <p>Te amo! ❤️</p>
         <button id="openGift">Abrir presente</button>
         <br>
-        <img id="giftImage" src="./img/03305976-801c-4394-8f1d-73cff755f74c.jpeg" style="width: 250px; height: 300px;" alt="Presente">
+        <img id="giftImage" src="./img/03305976-801c-4394-8f1d-73cff755f74c.jpeg" alt="Presente">
         <br>
         <button id="closeModal">Fechar</button>
     </div>
@@ -102,9 +122,7 @@
         const button = document.getElementById("openModal");
         
         function updateCountdown() {
-            let minutes = Math.floor(countdownTime / 60);
             let seconds = countdownTime % 60;
-            
             countdownElement.textContent = `Tempo restante: 00:00:${seconds.toString().padStart(2, '0')}`;
             
             if (countdownTime > 0) {
